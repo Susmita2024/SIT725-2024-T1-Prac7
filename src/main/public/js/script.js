@@ -13,7 +13,7 @@ const submitForm = async () => {
 
   // make api call
   var xhr = new XMLHttpRequest();
-  xhr.onreadystatechange = function() {
+  xhr.onreadystatechange = function () {
     if (xhr.readyState === 4) {
       var response = JSON.parse(xhr.responseText);
       if (xhr.status === 200) {
@@ -74,10 +74,9 @@ const isValidUrl = async (url) => {
 };
 
 const addCards = (items) => {
-  // console.log(items);
-  items.forEach(item => {
+  items.forEach((item) => {
     let itemToAppend =
-        `
+      `
         <div class="col s4 center-align">
           <div class="card medium">
             <div class="card-image waves-effect waves-block waves-light">
@@ -110,7 +109,13 @@ const fetchCards = async () => {
   }
 };
 
-$(document).ready(async function() {
+let socket = io();
+socket.on('number', (msg) => {
+  console.log('Random Number: ' + msg);
+});
+
+
+$(document).ready(async function () {
   $('.materialboxed').materialbox();
   $('#formSubmit').click(() => {
     submitForm();
